@@ -37,7 +37,7 @@ if(isset($_POST['withuser']) && isset($_POST['username']) && isset($_POST['msg']
     }
     }
     else{
-        $c="Start Conversation now......";
+        $c="\t\tStart Conversation now......";
         
     }
         echo $c;

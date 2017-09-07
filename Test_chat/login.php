@@ -2,7 +2,7 @@
 session_start();
 ?>
 <?php
-echo "hello";
+//echo "hello";
 if(isset($_POST['submit'])){
 $username = $_POST['username'];
 $password = $_POST['password'];

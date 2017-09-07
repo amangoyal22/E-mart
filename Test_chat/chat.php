@@ -28,7 +28,6 @@ if(isset($_POST['withuser']) && isset($_POST['username'])){
         $msg=$row['message'];
         //echo $msg."dddd";
         $c.=$sen.":".$msg."\n";
-    
     }
     }
     else{
