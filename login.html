@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            var q=0;
+            var y=0;
+            var z = 0;
+            function nae(ele){
+                //alert("dwdwqdwq");
+                var x= document.getElementById(ele.id).value;
+                //alert(x);
+                    var re = /(^[A-Z]{1})([a-z]*)$/g;
+                if(re.test(x)){
+                    y=1;
+                    alert("done");          
+                }
+                else{
+                    alert("First letter Should be capital");
+                }
+            }
+            
+            function pas(){
+                 var x= document.getElementById("pwd").value;
+                //alert(x);
+                var re = /(?=\w{6,10}$)(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]){1,})(?=\D*\d)\D*\d*/g ;
+                if(re.test(x)){
+                    z=1;
+                    alert("done");           
+                } 
+                else{
+                 alert("Passowrd Should have atleast 1 uppercase 1lowercase and 1 digit and length between 6-10");
+                }
+            }
+            function check(){
+                var x= document.getElementById("pwd").value;
+                var y= document.getElementById("cpwd").value;
+                if(x==y){
+                    q=1;
+                }
+            }
+            
+            function done(){
+                if(q==1 && y==1 && z==1){
+                    $.post("login.php",{fname:document.getElementById("fn").value,lname:document.getElementById("ln").value,email:document.getElementById("email").value,password:document.getElementById("pwd").value},function(output){window.location=output;});
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            <input type="Text" Placeholder="First Name" onchange="nae(this);" id="fn" required/><br>
+            <input type="Text" Placeholder="Last Name" onchange="nae(this);" id="ln" required/><br>
+            <input type="email" Placeholder="E-mail Address" id="email"   required/><br>
+            <input type="text" Placeholder="Password" id="pwd" onchange="pas()" required/><br>
+            <input type="password" Placeholder="Confirm Password" id="cpwd" pattern="check()" required/><br>
+            <input type="button" value="Login" onclick="done()"/><br>
+        </form>
+    </body>
+</html>
