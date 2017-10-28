@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>E-mart VIT</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<link rel="stylesheet" href="search.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+</head>
+<body id="body">
+<header>
+	<div id="mySidenav" class="main clearfix sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="search.html">Search Product</a>
+	    <a href="sell.html">Sell on E-mart</a>
+		<a href="feedback.html">Feedback</a>
+		<a href="#">About us</a>
+		<a href="profile.php">My Account</a>
+		<a href="cart.php">My Cart</a>
+	</div>
+	<i class="fa fa-bars bttn" onclick="openNav()" aria-hidden="true"></i>
+	<h3>V-mart</h3>
+	<script src="search.js"></script>
+	<input type="text" id="search" placeholder="Search by name" onkeyup="search()">
+	<i class="fa fa-user" aria-hidden="true" id="circle"></i>
+	<h4 class="username">Aman</h4>
+</header>
+	<nav class="mainnav">
+        <a href="#"><button id="bk" onclick="bk()">Books</button></a>
+        <a href="#"><button id="pm" onclick="pm()">Project Material</button></a></button>
+	</nav>
+	<ul class="cd-gallery" id='pro'>
+	</ul>
+	
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/jquery.mobile.min.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+<script>
+    var book=0;
+     var prom=0;    
+    function bk(){
+        if(book==0){prom=0;book=1;}
+        else{book=0;}
+        //alert(book);
+        search();
+        //alert(book);
+    }
+    
+    function pm(){
+        if(prom==0){book=0;prom=1;}
+        else{prom=0;}
+        //alert(prom);
+        search();
+        //alert(prom);
+    }
+    function search(){
+        query=document.getElementById("search").value;
+    if(query.length==0){
+        //alert("cc");
+        $.ajax({
+        url: 'search.php',
+        type: 'POST',
+        data: { elc:prom,bk:book,ser:0} ,
+        success: function (response) {
+            document.getElementById('pro').innerHTML=response
+        },
+        error: function () {
+            alert("Some Error has Occured.....");
+        }
+    });
+        
+    }
+        else{
+            
+        //alert(query+" "+book+" "+prom);
+        $.ajax({
+        url: 'search.php',
+        type: 'POST',
+        data: { que:query, elc:prom,bk:book,ser:1} ,
+        success: function (response) {
+            document.getElementById('pro').innerHTML=response
+        },
+        error: function () {
+            alert("Some Error has Occured.....");
+        }
+    });
+            
+        }
+    }
+    
+    $.ajax({
+        url: 'search.php',
+        type: 'POST',
+        data: { elc:prom,bk:book,ser:0} ,
+        success: function (response) {
+            document.getElementById('pro').innerHTML=response
+        },
+        error: function () {
+            alert("Some Error has Occured.....");
+        }
+    }); 
+</script>
+</body>
+</html>
