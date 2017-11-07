@@ -21,64 +21,66 @@ while($row=mysqli_fetch_assoc($result)){
     $password=$row['password'];
 }
 
-
-if(isset($_POST['buyhistory'])){
-$sql="select * from market where sellerid=$uid;";
+$boughtmoney=0;
+$sql="select * from market where buyerid=$uid and status=1;";
 $result=mysqli_query($_SESSION['con'],$sql);
 $prin="";
-while($row=mysqli_fetch_assoc($_SESSION['con'],$result)){
-    $product_id=$row['product_id'];
-    $cat=$row['Category'];
-    $x=substr($cat,0,1)."_id";
-    $sql1='select * from '.$cat.' where '.$x.'='.$productid.';';
-    $res=mysqli_query($_SESSION['con'],$sql1);
-    while($row1=mysqli_fetch_assoc($_SESSION['con'],$res)){
-        if($category=='books'){
-    $name=$row['b_name'];
-    $img=$row['b_image'];
-    $price=$row['b_price'];
-    $prin.="";
-        }
-        else{
-    $name=$row['e_name'];
-    $img=$row['e_image'];
-    $price=$row['e_price'];
-    $prin.="";
-        }   
-    }
-}
-    echo $prin;
-}
-
-if(isset($_POST['sellhistory'])){
-$sql="select * from market where buyerid=$uid;";
-$result=mysqli_query($_SESSION['con'],$sql);
-$prin="";
-while($row=mysqli_fetch_assoc($_SESSION['con'],$result)){
-    $product_id=$row['product_id'];
+while($row=mysqli_fetch_assoc($result)){
+    $productid=$row['product_id'];
     $cat=$row['Category'];
     $x=substr($cat,0,1)."_id";
     $sql1='select * from '.$cat.' where '.$x.'='.$productid.';';
     $res=mysqli_query($_SESSION['con'],$sql1);
     while($row1=mysqli_fetch_assoc($res)){
-        if($category=='books'){
-    $name=$row['b_name'];
-    $img=$row['b_image'];
-    $price=$row['b_price'];
-    $prin.="";
+        if($cat=='books'){
+    $name=$row1['b_name'];
+    $img=$row1['b_image'];
+    $price=$row1['b_price'];
+    $boughtmoney=+$price;
+    $prin.="<p><b>Product:</b> $name\n <b>Price:</b> $price \n <b>Category:</b> $cat </p><hr/>";
         }
         else{
-    $name=$row['e_name'];
-    $img=$row['e_image'];
-    $price=$row['e_price'];
-    $prin.="";
+    $name=$row1['e_name'];
+    $img=$row1['e_image'];
+    $price=$row1['e_price'];$boughtmoney=+$price;
+    $prin.="<p><b>Product:</b> $name\n <b>Price:</b> $price \n <b>Category:</b> $cat </p><hr/>";
         }   
     }
 }
-echo $prin;
+
+$bought=$prin;
+$prin="";
+$soldmoney=0;
+
+$sql="select * from market where sellerid=$uid and status=1 ;";
+$result=mysqli_query($_SESSION['con'],$sql);
+$prin="";
+while($row=mysqli_fetch_assoc($result)){
+    $productid=$row['product_id'];
+    $cat=$row['Category'];
+    $x=substr($cat,0,1)."_id";
+    $sql1='select * from '.$cat.' where '.$x.'='.$productid.';';
+    $res=mysqli_query($_SESSION['con'],$sql1);
+    while($row1=mysqli_fetch_assoc($res)){
+        if($cat=='books'){
+    $name=$row1['b_name'];
+    $img=$row1['b_image'];
+    $price=$row1['b_price'];
+    $soldmoney=+$price;
+    $prin.="<p><b>Product:</b> $name\n <b>Price:</b> $price \n <b>Category:</b> $cat </p><hr/>";
+        }
+        else{
+    $name=$row1['e_name'];
+    $img=$row1['e_image'];
+    $price=$row1['e_price'];$soldmoney=+$price;
+    $prin.="<p><b>Product:</b> $name\n <b>Price:</b> $price \n <b>Category:</b> $cat </p><hr/>";
+        }   
+    }
 }
+$sold=$prin;
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,9 +105,10 @@ echo $prin;
 	    <a href="search.html">Search Product</a>
 	    <a href="sell.html">Sell on E-mart</a>
 		<a href="feedback.html">Feedback</a>
-		<a href="#">About us</a>
+		<a href="aboutus.html">About us</a>
 		<a href="profile.php">My Account</a>
 		<a href="cart.php">My Cart</a>
+		<a href="signup.html">Logout</a>
 	</div>
 	<i class="fa fa-bars bttn" onclick="openNav()" aria-hidden="true"></i>
 	<h3>V-mart</h3>
@@ -117,13 +120,45 @@ echo $prin;
 <i class="fa fa-user" aria-hidden="true" id="maincircle"></i>
 <br>
         <h2 class="username2">Username: <?php echo $fname." ".$lname; ?></h2>
-			<button class="cd-item-button">EDIT   <i class="fa fa-pencil" aria-hidden="true"></i></button>
+			
 <br>
         <h2 class="username2">E-mail: <?php echo $email; ?></h2>
-			<button class="cd-item-button">EDIT   <i class="fa fa-pencil" aria-hidden="true"></i></button>
+<br>
+        <h2 class="username2">Money Earned: <?php echo $soldmoney; ?></h2>
+<br>
+        <h2 class="username2">Money Spent: <?php echo $boughtmoney; ?></h2>
+			
 			<br>
-			<button class="cd-item-bu">CHANGE PASSWORD  <i class="fa fa-key" aria-hidden="true"></i></button>
-			<button class="cd-item-but yolo"><i class="fa fa-history" aria-hidden="true"> BUYING HISTORY</i></button>
-			<button class="cd-item-but"><i class="fa fa-history" aria-hidden="true">SELLING HISTORY</i></button>
+	<div class="modal-container first">
+	  <input id="modal-toggle" type="checkbox">
+	  <label class="modal-btn" for="modal-toggle"><i class="fa fa-history" aria-hidden="true"> BUYING HISTORY</i></label> 
+	  <label class="modal-backdrop" for="modal-toggle"></label>
+	  <div class="modal-content">
+		<label class="modal-close" for="modal-toggle">&#x2715;</label>
+		<h2>BUYING HISTORY</h2><hr />
+		<?php echo $bought;?> 
+		<label class="modal-content-btn" for="modal-toggle">OK</label>   
+	  </div>          
+	</div> 
+	
+	<div class="mod-container">
+	  <input id="mod-toggle" type="checkbox">
+	  <label class="mod-btn" for="mod-toggle"><i class="fa fa-history" aria-hidden="true"> SELLING HISTORY</i></label> 
+	  <label class="mod-backdrop" for="mod-toggle"></label>
+	  <div class="mod-content">
+		<label class="mod-close" for="mod-toggle">&#x2715;</label>
+		<h2>SELLING HISTORY</h2><hr />
+		<?php echo $sold;?>  
+		<label class="mod-content-btn" for="mod-toggle">OK</label>   
+	  </div>          
+	</div>  	
 </body>
+<script>
+var labelID;
+$('label').click(function() {
+  labelID = $(this).attr('for');
+  $('#' + labelID).toggleClass('active');
+}); 
+</script>
+
 </html>

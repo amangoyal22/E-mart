@@ -13,7 +13,7 @@ html, body {
 }
 
 .left-column {
-  width: 60%;
+  width: 55%;
   position: relative;
 }
  
@@ -23,6 +23,10 @@ html, body {
 }
 
 .left-column img {
+    
+    .checked {
+    color: orange;
+}
   width: 100%;
   position: absolute;
   left: 10px;
@@ -131,7 +135,7 @@ div.cd-item-button button{
 .cart-btn {
 	display:inline-block;
 	width:40%;
-	height:12%;
+	height:15%;
 	font-weight:bold;
 	margin:28px 0 0 0 ;
 	text-decoration:none;
@@ -149,6 +153,15 @@ div.cd-item-button button{
 .cart-btn:hover {
   background-color: #64af3d;
 }
+  .fa-undo{
+	  margin-right:10px;
+  }
+  .fa-shopping-cart{
+	  margin-right:10px;
+  }
+  img.active{
+	  margin-top:20px;
+  }
 /* Responsive */
 @media (max-width: 940px) {
   .container {
@@ -174,4 +187,8 @@ div.cd-item-button button{
     width: 220px;
     top: -85px;
   }
+}
+
+.checked{
+    color: orange;
 }

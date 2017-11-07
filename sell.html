@@ -15,16 +15,20 @@
 	</head>
 <body id="body">
 	<header>
-		<div id="mySidenav" class="main clearfix sidenav">
+	<div id="mySidenav" class="main clearfix sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="search.html">Search Product</a>
-		<a href="#">Feedback</a>
-		<a href="#">About us</a>
+		<a href="search.html">Search Product</a>
+		<a href="feedback.html">Feedback</a>
+		<a href="aboutus.html">About us</a>
 		<a href="profile.php">My Account</a>
 		<a href="cart.php">My Cart</a>
+		<a href="signup.html">Logout</a>
 	</div>
 		<i class="fa fa-bars bttn" onclick="openNav()" aria-hidden="true"></i>
 		<h2>V-mart Seller Hub</h2>
+		<h4 class="username" id="username"></h4>
+		<i class="fa fa-user" aria-hidden="true" id="circle"></i>
+		
 	</header>
 	<form action="upload.php" method="post" name="form1" id="form1" enctype="multipart/form-data">
 	<div class="pop-up"> 
@@ -53,7 +57,13 @@
 			<input type="text" id="author" name="author" placeholder="Author">
 			<input type="number" id="edition" name="edition" placeholder="Edition (Optional)">
 			<input type="number" name="price" id="price" placeholder="Price of your product" required>
-			<input type="tel" name="number" id="number" placeholder="Phone Number (Optional)">
+			<input type="number" name="sechand" id="sechand" placeholder="No. of Hand me downs" required>
+			<input type="number" name="age" id="age" placeholder="Age of item in years" required>
+			<input type="tel" name="number" id="number" pattern="[789][0-9]{9}" placeholder="Phone Number (Optional)">
+			<label>Condition of the product:</label>
+			<input type="radio" value="good" name="good" id="good"><label>Good</label>
+			<input type="radio" value="fine" name="fine" id="fine"><label>Fine</label>
+			<input type="radio" value="bad" name="bad" id="bad"><label>Bad</label>
             <textarea placeholder="Description (Optional)" name="description" id="description" form="form1"></textarea>
 			<ul class="payment-sendbtns">
 				<li><input type="reset" value="Cancel"></li>
@@ -75,6 +85,16 @@
  document.getElementById('description').value="";
     }
         rest();
+    $.ajax({
+        url: 'username.php',
+        type: 'POST',
+        success: function (response) {
+            document.getElementById('username').innerHTML=response
+        },
+        error: function () {
+            alert("Some Error has Occured.....");
+        }
+    });
     </script>
 </body>
 <script src="sell.js"></script>

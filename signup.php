@@ -20,10 +20,10 @@ if(mysqli_query($_SESSION['con'],$sql)){
     $result=mysqli_query($_SESSION['con'],$sql);
     while($row=mysqli_fetch_assoc($result)){
       $_SESSION['user_id']=$row['user_id'];
-      $_SESSION['username']=$row['fname']." ".$row['lname']; 
+      $_SESSION['username']=$row['f_name']." ".$row['l_name']; 
     }
     echo $_SESSION['user_id'];
-    //header('location:search.html');
+    header('location:search.html');
 }   
 else{
     echo"<script>alert('Sorry Some error has occured.......Please try again');window.location='signup.html';</script>";

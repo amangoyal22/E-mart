@@ -85,6 +85,7 @@ h1 {
     margin: .5em 0 .8em;
     text-transform: uppercase;
     font-weight: 400;
+	margin-left:40px;
 }
 p.footer {
     text-align: center;
@@ -377,4 +378,18 @@ div.popupright{
 #body {
     transition: margin-left .5s;
     
+}
+.username{
+	display:inline;
+	float:right;
+	margin:15px 80px 0 0;
+	font-size:20px;}
+#circle{
+	font-size:27px;
+	margin:10px 15px 0 40px;
+	float:right;
+}
+
+h2{
+	margin-left:190px;
 }

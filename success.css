@@ -1,0 +1,118 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  text-align:center;
+  background:url("back.png");
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+
+.left {
+  width: 50%;
+  position: relative;
+  margin:0;
+}
+div.left{
+	margin:0;
+}
+ .left img{
+	 display:inline;
+	 float:left;
+	 margin:30px 30px;
+ }
+.right {
+  width: 50%;
+  margin:0;
+  float:left;
+}
+h3{
+	margin: 10px 25px;
+}
+/*
+.ok{
+	margin-top:20px;
+	width:25%;
+	height:8%;
+	font-size:1.5em;
+	font-weight:bold;
+	background-color:#2874F0;
+	color:white;
+	border:none;
+	border-radius:5px;
+}
+*/
+.fa-check{
+	margin-right:5px;
+}
+
+@-webkit-keyframes sheen {
+  0% {
+    -webkit-transform: skewY(-45deg) translateX(0);
+            transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    -webkit-transform: skewY(-45deg) translateX(12.5em);
+            transform: skewY(-45deg) translateX(12.5em);
+  }
+}
+@keyframes sheen {
+  0% {
+    -webkit-transform: skewY(-45deg) translateX(0);
+            transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    -webkit-transform: skewY(-45deg) translateX(12.5em);
+            transform: skewY(-45deg) translateX(12.5em);
+  }
+}
+.wrapper {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+		  margin:90px 0 0 300px;
+}
+
+.button {
+  padding: 0.50em 2em;
+  text-align: center;
+  text-decoration: none;
+  color: #2194E0;
+  border: 2px solid #2194E0;
+  font-size: 24px;
+  display: inline-block;
+  border-radius: 0.3em;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+.button:before {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -4.5em;
+  -webkit-transform: skewX(-45deg) translateX(0);
+          transform: skewX(-45deg) translateX(0);
+  -webkit-transition: none;
+  transition: none;
+}
+.button:hover {
+  background-color: #2194E0;
+  color: #fff;
+  border-bottom: 4px solid #1977b5;
+}
+.button:hover:before {
+  -webkit-transform: skewX(-45deg) translateX(13.5em);
+          transform: skewX(-45deg) translateX(13.5em);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}

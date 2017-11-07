@@ -1,6 +1,239 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: #ccc;
+  
+}
+
+.modal-container {
+  margin: 40px 70px;
+  padding-top: 0px;
+  width: 160px;
+  display:inline-block; 
+}
+
+.modal-container .modal-btn {
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  width: 260px;
+  height: 50px;
+  line-height: 50px;
+  background: #446CB3;
+  font-size: 22px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 5px 5px -5px #333;
+  transition: background 0.3s ease-in;
+ 
+}
+
+.modal-container .modal-btn:hover {
+  background: #365690;
+}
+.modal-container .modal-content,
+.modal-container .modal-backdrop {
+  height: 0;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in;
+}
+.modal-container .modal-close {
+  color: #aaa;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding-top: 3px;
+  background: #fff;
+  font-size: 16px;
+  width: 25px;
+  height: 25px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+.modal-container .modal-close:hover {
+  color: #333;
+}
+.modal-container .modal-content-btn {
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  bottom: 20px;
+  right: 30px;
+  background: #446CB3;
+  color: #fff;
+  width: 50px;
+  border-radius: 2px;
+  font-size: 14px;
+  height: 32px;
+  padding-top: 9px;
+  font-weight: normal;
+}
+.modal-container .modal-content-btn:hover {
+  color: #fff;
+  background: #365690;
+}
+.modal-container #modal-toggle {
+  display: none;
+}
+.modal-container #modal-toggle.active ~ .modal-backdrop, .modal-container #modal-toggle:checked ~ .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+.modal-container #modal-toggle.active ~ .modal-content, .modal-container #modal-toggle:checked ~ .modal-content {
+  opacity: 1;
+  background-color: #fff;
+  max-width: 400px;
+  width: 400px;
+  height: 280px;
+  padding: 10px 30px;
+  position: fixed;
+  left: calc(50% - 200px);
+  top: 12%;
+  border-radius: 4px;
+  z-index: 999;
+  pointer-events: auto;
+  cursor: auto;
+  visibility: visible;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.6);
+}
+@media (max-width: 400px) {
+  .modal-container #modal-toggle.active ~ .modal-content, .modal-container #modal-toggle:checked ~ .modal-content {
+    left: 0;
+  }
+}
+
+.mod-container {
+  margin: 40px 70px;
+  padding-top: 0px;
+  width: 160px;
+  display:inline-block; 
+}
+
+.mod-container .mod-btn {
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  width: 260px;
+  height: 50px;
+  line-height: 50px;
+  background: #446CB3;
+  font-size: 22px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 5px 5px -5px #333;
+  transition: background 0.3s ease-in;
+ 
+}
+
+.mod-container .mod-btn:hover {
+  background: #365690;
+}
+.mod-container .mod-content,
+.mod-container .mod-backdrop {
+  height: 0;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in;
+}
+.mod-container .mod-close {
+  color: #aaa;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding-top: 3px;
+  background: #fff;
+  font-size: 16px;
+  width: 25px;
+  height: 25px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+.mod-container .mod-close:hover {
+  color: #333;
+}
+.mod-container .mod-content-btn {
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  bottom: 20px;
+  right: 30px;
+  background: #446CB3;
+  color: #fff;
+  width: 50px;
+  border-radius: 2px;
+  font-size: 14px;
+  height: 32px;
+  padding-top: 9px;
+  font-weight: normal;
+}
+.mod-container .mod-content-btn:hover {
+  color: #fff;
+  background: #365690;
+}
+.mod-container #mod-toggle {
+  display: none;
+}
+.mod-container #mod-toggle.active ~ .mod-backdrop, .mod-container #mod-toggle:checked ~ .mod-backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+.mod-container #mod-toggle.active ~ .mod-content, .mod-container #mod-toggle:checked ~ .mod-content {
+  opacity: 1;
+  background-color: #fff;
+  max-width: 400px;
+  width: 400px;
+  height: 280px;
+  padding: 10px 30px;
+  position: fixed;
+  left: calc(50% - 200px);
+  top: 12%;
+  border-radius: 4px;
+  z-index: 999;
+  pointer-events: auto;
+  cursor: auto;
+  visibility: visible;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.6);
+}
+@media (max-width: 400px) {
+  .mod-container #mod-toggle.active ~ .mod-content, .mod-container #mod-toggle:checked ~ .mod-content {
+    left: 0;
+  }
+}
 #maincircle{
 	display:inline-block;
-	margin:150px 50px 20px 600px;
+	margin:150px 50px 20px 625px;
 	font-size:100px;
 	border:solid black 2px;
 	padding:20px;
@@ -8,27 +241,9 @@
 }
 .username2{
 	text-align:center;
-	padding:5px;
-	display:inline-block;
-	margin-left:430px;
+	display:block;
 }
 
-
-.cd-item-button{
-	height:7%;
-	font-weight:bold;
-	background: #fb641b;
-    border: none;
-    color: #fff;
-	font-family: Roboto, Arial, sans-serif;
-    letter-spacing: 0;
-	padding: 10px 4px;
-    border-radius: 2px;
-    width: 12%;
-	margin:28px 0 0 10px ;
-	font-size: 18px;
-	display:inline;
-}
 .cd-item-bu{
 	height:7%;
 	font-weight:bold;
@@ -40,7 +255,7 @@
 	padding: 10px 4px;
     border-radius: 2px;
     width: 18%;
-	margin:28px auto 10px ;
+	margin:22px auto 10px ;
 	font-size: 18px;
 	display:block;
 }
@@ -55,10 +270,20 @@
 	padding: 10px 4px;
     border-radius: 2px;
     width: 18%;
-	margin:28px 0 0 10px ;
+	margin:22px 0 0 10px ;
 	font-size: 18px;
 	display:inline;
 }
 .yolo{
 	margin-left:410px;
+	background: #fb641b;
+}
+#body, html{
+	background:url("back.png");
+}
+.first{
+	margin-left:400px;
+}
+.modal-btn{
+	background-color: #fb641b;
 }

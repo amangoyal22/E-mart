@@ -9,8 +9,8 @@ $_SESSION['con']=mysqli_connect($server,$username,$pass,$db);
 
 $books=$_POST['bk'];
 $electronics=$_POST['elc'];
-$sqle="select * from market where status=0 and category='electronics'";
-$sqlb="select * from market where status=0 and category='books'";
+$sqle="select * from market where status=0 and category='electronics' and sellerid !=".$_SESSION['user_id'].";";
+$sqlb="select * from market where status=0 and category='books' and sellerid !=".$_SESSION['user_id'].";";
 
 if($_POST['ser']==1){
 $query=$_POST['que'];

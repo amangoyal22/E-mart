@@ -7,11 +7,9 @@ $pass="";
 $db="emart";
 $_SESSION['con']=mysqli_connect($server,$username,$pass,$db);
 $movestatus=0;
-$_SESSION['userid']=1;
-
 function filecheck($x){
     $target_dir="upload/";
-	$GLOBALS['target_file'] = $target_dir .basename($_SESSION['userid']."_".$_REQUEST["name"]."_".$x["name"]);
+	$GLOBALS['target_file'] = $target_dir .basename($_SESSION['user_id']."_".$_REQUEST["name"]."_".$x["name"]);
 	$GLOBALS['uploadOk']=1;
 	$imageFileType=pathinfo($GLOBALS['target_file'], PATHINFO_EXTENSION);	
 	if (file_exists($GLOBALS['target_file']))
@@ -43,7 +41,7 @@ function filemove($x){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-$userid=$_SESSION['userid'];
+$userid=$_SESSION['user_id'];
 filecheck($_FILES["files"]);
 filemove($_FILES["files"]);
 $image=$GLOBALS['target_file'];
